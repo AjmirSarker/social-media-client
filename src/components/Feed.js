@@ -32,6 +32,7 @@ const Feed = ({ username, pending, setPending }) => {
   return (
     <>
       <div className="container">
+        <h2 className='text-center mb-2 text-dark fw-bolder'>You All Posts Are Here</h2>
         {/* <Post/> */}
         {posts?.map((one) => (
           <Card
