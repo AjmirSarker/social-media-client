@@ -1,0 +1,24 @@
+.userName{
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #51557E;
+    font-size: 20px;
+}
+.email{
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #51557E;
+   word-wrap: break-word;
+}
+.updateProfileBtn{
+    border: 2px solid #51557E;
+    padding: 5px 10px;
+    background-color: #51557E;
+    color: white;
+    font-family: 'Poppins';
+    
+}
+.updateProfileBtn:hover{
+    color: #51557E;
+    border: 2px solid #51557E;
+    background-color: white;
+    transition: all .2s ease-in-out;
+}

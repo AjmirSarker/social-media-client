@@ -1,0 +1,11 @@
+.profileImage{
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+}
+.postIcons{
+    font-size: 20px;
+    margin-right:30px;
+    display: flex;
+    align-items: center;
+}
