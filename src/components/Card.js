@@ -4,6 +4,7 @@ import { BiCommentDetail } from 'react-icons/bi';
 import { FcLike } from 'react-icons/fc'
 import {AiOutlineDelete}  from 'react-icons/ai'
 import toast from 'react-hot-toast';
+import './Login.css'
 const Card = ({post,reload,setReload,reloading,setReloading,pending,setPending}) => {
 
     const id =post?._id
@@ -21,7 +22,7 @@ const Card = ({post,reload,setReload,reloading,setReloading,pending,setPending})
         // setIsloading(true)
 let likes = parseInt(post.likes + 1)
 const Newlike={likes,image,comments,username}
-fetch(`http://localhost:5000/posts/${id}`,{
+fetch(`https://banaosocialmedia.herokuapp.com/posts/${id}`,{
     method: 'PUT',
     headers: {
       'content-type': 'application/json'
@@ -47,7 +48,7 @@ fetch(`http://localhost:5000/posts/${id}`,{
         // setIsloading(true)
 
 const Newlike={image,comments,username}
-fetch(`http://localhost:5000/post/${id}`,{
+fetch(`https://banaosocialmedia.herokuapp.com/post/${id}`,{
     method: 'PUT',
     headers: {
       'content-type': 'application/json'
@@ -61,7 +62,7 @@ fetch(`http://localhost:5000/post/${id}`,{
 e.target.reset()
     }
     const Delete=()=>{
- fetch(`http://localhost:5000/posts/${id}`,{
+ fetch(`https://banaosocialmedia.herokuapp.com/posts/${id}`,{
     method:'DELETE'
  })
  .then((res)=>res.json())
@@ -70,11 +71,12 @@ e.target.reset()
     }
     return (
         
-        <div>
-                 <div class="card p-2 text-center mb-3 ">                 
+        <div className='card-design'>
+                 <div class="card p-2 mb-3 "> 
+                 <h3 class="card-text text-secondary ps-3 py-1">{post?.post}</h3>                
                     <img style={{ maxHeight: '400px',maxWidth:'500px' }} src={post?.image} class="card-img-top mx-auto mt-3 " alt="..." />
                     <div class="card-body">
-                        <p class="card-text py-1">{post?.post}</p>
+                        
                         <div className='d-flex justify-content-between'>
                       <div onClick={()=>addLike()}>
                       <p class="card-text fs-4" onClick={toggleLike}>
@@ -94,9 +96,9 @@ e.target.reset()
                 </div>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
+                    <div class="modal-content card-design">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">All Comments</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -105,8 +107,8 @@ e.target.reset()
                          }
                         </div>
                         <div class="modal-footer">
-                       <form onSubmit={viewComment} action="">
-                       <input name='comment' type="text" placeholder='add your comment' className="form-control" /><button type="submit" class="btn btn-primary">Save changes</button>
+                       <form className='d-flex justify-content-center' onSubmit={viewComment} action="">
+                       <input name='comment' type="text" placeholder='add your comment' className="log-input" /><button type="submit" class="login-btn">Add Comment</button>
                        </form>
                         </div>
                     </div>

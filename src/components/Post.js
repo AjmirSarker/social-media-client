@@ -3,63 +3,71 @@ import { BiImage } from 'react-icons/bi';
 import { HiOutlineVideoCamera } from 'react-icons/hi';
 import { GoLocation } from 'react-icons/go';
 import toast from 'react-hot-toast';
-const Post = ({ username,pending,setPending }) => {
-  const[reload,setReload]=useState(false)
-    const name = username
-    // console.log(username);
+import './Login.css'
+const Post = ({ username, pending, setPending }) => {
+  const [reload, setReload] = useState(false);
+  const name = username;
+  // console.log(username);
   const newPost = (e) => {
-e.preventDefault()
+    e.preventDefault();
 
-const post= e.target.post.value;
-const image= e.target.image.value;
-const username=name ;
-const likes =parseInt(1);
-const comments =[]
-const fullPost={post,image,username,likes,comments}
-const url ='http://localhost:5000/posts'
-fetch(url,{
- method:'POST',
- headers:{
-     'content-type': 'application/json'
- },
- body: JSON.stringify(fullPost)
+    const post = e.target.post.value;
+    const image = e.target.image.value;
+    const username = name;
+    const likes = parseInt(1);
+    const comments = [];
+    const fullPost = { post, image, username, likes, comments };
+    const url = 'https://banaosocialmedia.herokuapp.com/posts';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(fullPost)
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setReload(!reload);
+        setPending(!pending);
+        console.log(result);
+      });
 
-})
-.then((res) => res.json())
-     .then((result) => {
-      setReload(!reload);
-      setPending(!pending)
-       console.log(result);
-     });
-   
-    
-     toast.success('Post Added');
-     e.target.reset()
-
-
+    toast.success('Post Added');
+    e.target.reset();
   };
   return (
     <>
-      <div className="container mt-2 border">
-        <h5 className="text-center" style={{ }}>
-         Share your words
+      <div className="container mt-2 ">
+        <h5 className="text-center" style={{}}>
+          Share your words
         </h5>
         <form onSubmit={newPost} action="">
           <input
-          required
-          name='post'
+            required
+            name="post"
             type="text"
             className="form-control mb-3 mt-4"
             placeholder="Write your post"
           />
           <input
-          required
-          name='image'
+            required
+            name="image"
             type="text"
             className="form-control mb-5 mt-2"
             placeholder="Enter image Link"
           />
-          <span className='text-success'><p>You can go imgbb and make a direct link<a target="_blank" className='ps-2 text-decoration-none' href="https://imgbb.com/" >Click</a></p></span>
+          <span className="text-success">
+            <p>
+              You can go imgbb and make a direct link
+              <a
+                target="_blank"
+                className="ps-2 text-decoration-none"
+                href="https://imgbb.com/"
+              >
+                Click
+              </a>
+            </p>
+          </span>
 
           <div className="d-flex justify-content-between">
             <div className="px-1">
@@ -90,12 +98,7 @@ fetch(url,{
           <div className="text-center my-3">
             <button
               type="submit"
-              style={{
-                color: 'white',
-                background: '#446A46',
-                border: '2px solid #446A46',
-                padding: '3px 15px'
-              }}
+             className='login-btn'
             >
               Share
             </button>
